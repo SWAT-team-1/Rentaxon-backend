@@ -5,8 +5,9 @@ from rest_framework.generics import (
     ListCreateAPIView,
     RetrieveUpdateDestroyAPIView,
 )
-from .models import Product,Category
-from .serializers import ProductsSerializer, CategorySerializer
+from .models import Product,Category,Review ,Favorite
+
+from .serializers import ProductsSerializer, CategorySerializer, FavoriteSerializer ,ReviewSerializer
 
 #  Product views
 class ProductList(ListCreateAPIView):
@@ -28,3 +29,25 @@ class CategoryList(ListCreateAPIView):
 class CategoryDetail(RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+
+# Favorite views
+
+class FavoriteList(ListCreateAPIView):
+    queryset = Favorite.objects.all()
+    serializer_class = FavoriteSerializer
+
+class FavoriteDetail(RetrieveUpdateDestroyAPIView):
+    queryset = Favorite.objects.all()
+    serializer_class = FavoriteSerializer
+
+
+# Review views
+
+class ReviewList(ListCreateAPIView):
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializer
+
+class ReviewDetail(RetrieveUpdateDestroyAPIView):
+    queryset = Review.objects.all()
+    
+    serializer_class = ReviewSerializer
