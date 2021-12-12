@@ -29,11 +29,11 @@ class Favorite(models.Model):
     product_favorite = models.ForeignKey(Product, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.product_favorite
+        return self.product_favorite.product_name
 
 class Review(models.Model):
     reviewed = models.ForeignKey(get_user_model(),related_name='reviewed',null=True,on_delete=models.CASCADE)
-    review_content = models.CharField(max_length=256)
+    review_content = models.TextField(max_length=500)
     auther = models.ForeignKey(get_user_model(),related_name='auther',null=True,on_delete=models.CASCADE)
 
     def __str__(self):

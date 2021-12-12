@@ -21,6 +21,7 @@ from .views import MyTokenObtainPairCustomView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/user/', include('accounts.urls')),
+    path('api/v1/products/', include('Products.urls')),
     path(
         "api/token/",
         MyTokenObtainPairCustomView.as_view(),

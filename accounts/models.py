@@ -59,7 +59,7 @@ class NewUser(AbstractBaseUser):
     REQUIRED_FIELDS = ['user_name','password','phone_number']
 
     def __str__(self):
-        return self.user_email
+        return self.user_name
     
     def has_perm(self, perm, obj=None):
         "Does the user have a specific permission?"
