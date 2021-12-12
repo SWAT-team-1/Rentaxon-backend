@@ -5,11 +5,9 @@ from .serializers import  NewUserSerializer, CreateUserSerializer
 from rest_framework.permissions import AllowAny
 from .models import NewUser
 from django.contrib.auth.hashers import make_password
-from django.views.decorators.csrf import csrf_exempt
 
 class CustomUserCreate(APIView):
     permission_classes = [AllowAny]
-    @csrf_exempt
     def post(self, request, format='json'):
         print(request.data)
         data = request.data

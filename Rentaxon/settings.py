@@ -44,22 +44,21 @@ DEBUG = env.bool("DEBUG")
 ALLOWED_HOSTS = tuple(env.list("ALLOWED_HOSTS"))
 # Application definition
 
-CORS_ALLOW_CREDENTIALS = True
+# CORS_ALLOW_CREDENTIALS = True
 
-CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_ALLOW_ALL = True
 
-CORS_ALLOW_CREDENTIALS = True
+# CORS_ALLOW_CREDENTIALS = True
 
 
-CSRF_TRUSTED_ORIGINS = ['https://rentaxon-api.herokuapp.com']
+# CSRF_TRUSTED_ORIGINS = ['https://rentaxon-api.herokuapp.com']
 
-CORS_REPLACE_HTTPS_REFERER = True
+# CORS_REPLACE_HTTPS_REFERER = True
 
-CSRF_COOKIE_DOMAIN = 'herokuapp.com'
+# CSRF_COOKIE_DOMAIN = 'herokuapp.com'
 
-SESSION_COOKIE_SECURE = False
+# SESSION_COOKIE_SECURE = False
 
-CSRF_FAILURE_VIEW = 'your_app_name.views.csrf_failure'
 INSTALLED_APPS = [
     "whitenoise.runserver_nostatic",
     'django.contrib.admin',
