@@ -56,7 +56,10 @@ CSRF_TRUSTED_ORIGINS = ['https://rentaxon-api.herokuapp.com']
 CORS_REPLACE_HTTPS_REFERER = True
 
 CSRF_COOKIE_DOMAIN = 'herokuapp.com'
+
 SESSION_COOKIE_SECURE = False
+
+CSRF_FAILURE_VIEW = 'your_app_name.views.csrf_failure'
 INSTALLED_APPS = [
     "whitenoise.runserver_nostatic",
     'django.contrib.admin',
