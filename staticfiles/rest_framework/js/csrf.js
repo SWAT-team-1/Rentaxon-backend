@@ -39,7 +39,7 @@ function sameOrigin(url) {
 }
 
 // var csrftoken = window.drf.csrfToken;
-const csrftoken = getCookie('csrftoken');
+const csrftoken = Cookies.get('csrftoken');
 
 
 $.ajaxSetup({
