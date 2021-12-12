@@ -6,7 +6,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 
 class MyUserManager(BaseUserManager):
-    def create_user(self, user_email, user_name, password, phone_number):
+    def create_user(self, user_email, user_name, password):
         """
         Creates and saves a User with the given email, date of
         birth and password.
@@ -18,14 +18,13 @@ class MyUserManager(BaseUserManager):
             user_email=self.normalize_email(user_email),
             user_name=user_name,
             password=password,
-            phone_number=phone_number,
         )
 
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, user_email, user_name, password,phone_number):
+    def create_superuser(self, user_email, user_name, password):
         """
         Creates and saves a superuser with the given email, date of
         birth and password.
@@ -34,7 +33,6 @@ class MyUserManager(BaseUserManager):
             user_email,
             user_name=user_name,
             password=password,
-            phone_number=phone_number
         )
         user.is_admin = True
         user.save(using=self._db)
@@ -48,7 +46,7 @@ class NewUser(AbstractBaseUser):
         unique=True,
     )
     user_name = models.CharField(max_length=50, unique=True)
-    phone_number = PhoneNumberField(null=False, blank=False, unique=True)
+    phone_number = PhoneNumberField(null=False, blank=False)
     avatar = models.CharField(max_length=1000, blank=True)
     address = models.TextField(max_length=250) 
     is_active = models.BooleanField(default=True)
@@ -56,7 +54,7 @@ class NewUser(AbstractBaseUser):
     objects = MyUserManager()
 
     USERNAME_FIELD = 'user_email'
-    REQUIRED_FIELDS = ['user_name','password','phone_number']
+    REQUIRED_FIELDS = ['user_name','password']
 
     def __str__(self):
         return self.user_name
