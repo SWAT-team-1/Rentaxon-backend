@@ -24,6 +24,7 @@ class Product(models.Model):
 
 
 
+
 class Favorite(models.Model):
     user = models.ForeignKey(get_user_model(),on_delete=models.CASCADE)
     product_favorite = models.ForeignKey(Product, on_delete=models.CASCADE)
