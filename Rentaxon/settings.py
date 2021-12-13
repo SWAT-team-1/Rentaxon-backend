@@ -22,18 +22,19 @@ env = environ.Env(
     ALLOW_ALL_ORIGINS=(bool, False),
     ALLOWED_HOSTS=(list, []),
     ALLOWED_ORIGINS=(list, []),
+    CSRF_TRUSTED_ORIGINS=(list, []),
     DATABASE_ENGINE=(str, "django.db.backends.sqlite3"),
     DATABASE_NAME=(str, BASE_DIR / "db.sqlite3"),
     DATABASE_USER=(str, ""),
     DATABASE_PASSWORD=(str, ""),
     DATABASE_HOST=(str, ""),
     DATABASE_PORT=(int, 5432),
+
 )
 
 environ.Env.read_env()
 
 ENVIRONMENT = env.str("ENVIRONMENT")
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -42,6 +43,10 @@ SECRET_KEY = env.str("SECRET_KEY")
 DEBUG = env.bool("DEBUG")
 
 ALLOWED_HOSTS = tuple(env.list("ALLOWED_HOSTS"))
+
+
+CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS")
+ 
 # Application definition
 
 # CORS_ALLOW_CREDENTIALS = True
@@ -51,7 +56,7 @@ ALLOWED_HOSTS = tuple(env.list("ALLOWED_HOSTS"))
 # CORS_ALLOW_CREDENTIALS = True
 
 
-# CSRF_TRUSTED_ORIGINS = ['https://rentaxon-api.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = ['https://rentaxon-api.herokuapp.com']
 
 # CORS_REPLACE_HTTPS_REFERER = True
 
