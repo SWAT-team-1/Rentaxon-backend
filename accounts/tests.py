@@ -1,50 +1,28 @@
-from django.contrib.auth import get_user_model
-from django.urls import reverse
+from django.test.testcases import TestCase
+from django.urls.base import reverse
 from rest_framework import status
-from rest_framework.test import APITestCase
-
 from  .models import NewUser
 
 
-class APITest(APITestCase):
+class APITest(TestCase):
     
-    def setUp(self):
-
-        self.test_user = get_user_model().objects.create_user(user_email='moayad@gmail.com',user_name='Moayad',password='1234',phone_number='+962796814625')
-        self.test_user.save()
-
-        account_info={
-            "email": "moayad@gmail.com",
-            "password": "1234"}
-
-        response= self.client.post('api/token/',account_info,format='text/html')
-        token=response.json()['access']
-
-        self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + token)
-
-
-    def test_list(self):
-
-        response = self.client.get('api/v1/user/')
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-    
-
-    def test_exist_user(self):
-        assert  self.test_user.user_name=="moayad"
-        assert  self.test_user.phone_number=="+962796814625"
-
-
     def test_create_user(self):
      
-        url ='api/v1/user/create/'
+        url ='http://127.0.0.1:8000/api/v1/user/create/'
         data={
-      "user_email": "osama@gmail.com",
-      "password":"osama123",
-      "user_name": "osama",
-      "phone_number": "0796814655",
+      "user_email": "moayad21@gmail.com",
+      "password":"moayad123",
+      "user_name": "moayad",
+      "phone_number": "+962796814645",
       "address": "Jordan/Amman",
       "avatar":"imageurl"
     }
-        response = self.client.post(url, data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED, self.test_user.id)
-        self.assertEqual(NewUser.objects.count(), 2)
+        response = self.client.post(url, data)
+        self.assertEqual(response.status_code, 201)
+        response2 = self.client.get('http://127.0.0.1:8000/api/v1/user/')
+        self.assertEqual(response2.data[0]["user_name"],"moayad")
+
+    def test_user_list(self):
+        url ='http://127.0.0.1:8000/api/v1/user/'
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
